@@ -5,6 +5,8 @@
 
 package indicator
 
+import "fmt"
+
 // Awesome Oscillator.
 //
 // Median Price = ((Low + High) / 2).
@@ -194,7 +196,12 @@ func StochasticOscillatorRSI(periodStock, kPeriod, dPeriod int, rsi []float64) (
     highestRSI := Max(periodStock, rsi)
     lowestRSI := Min(periodStock, rsi)
 
-	k := Sma(kPeriod, multiplyBy(divide(subtract(rsi, lowestRSI), subtract(highestRSI, lowestRSI)), float64(100)))
+    fmt.Println("highestRSI")
+    fmt.Println(highestRSI)
+    fmt.Println("lowestRSI")
+    fmt.Println(lowestRSI)
+    calcul := multiplyBy(divide(subtract(rsi, lowestRSI), subtract(highestRSI, lowestRSI)), float64(100))
+	k := Sma(kPeriod, calcul)
     d := Sma(dPeriod, k)
 
     return k, d
