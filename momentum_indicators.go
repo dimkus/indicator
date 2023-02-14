@@ -201,6 +201,8 @@ func StochasticOscillatorRSI(periodStock, kPeriod, dPeriod int, rsi []float64) (
     fmt.Println("lowestRSI")
     fmt.Println(lowestRSI)
     calcul := multiplyBy(divide(subtract(rsi, lowestRSI), subtract(highestRSI, lowestRSI)), float64(100))
+    fmt.Println("calcul")
+    fmt.Println(calcul)
 	k := Sma(kPeriod, calcul)
     d := Sma(dPeriod, k)
 
