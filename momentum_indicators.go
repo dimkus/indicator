@@ -189,6 +189,17 @@ func StochasticOscillator(high, low, closing []float64) ([]float64, []float64) {
 	return k, d
 }
 
+// Stochastic Oscillator RSI
+func StochasticOscillatorRSI(periodStock, kPeriod, dPeriod int, rsi []float64) ([]float64, []float64) {
+    highestRSI := Max(periodStock, rsi)
+    lowestRSI := Min(periodStock, rsi)
+
+	k := Sma(kPeriod, multiplyBy(divide(subtract(rsi, lowestRSI), subtract(highestRSI, lowestRSI)), float64(100)))
+    d := Sma(dPeriod, k)
+
+    return k, d
+}
+
 // Williams R. Determine overbought and oversold.
 //
 // WR = (Highest High - Closing) / (Highest High - Lowest Low) * -100.
