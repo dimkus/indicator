@@ -1,3 +1,3 @@
-module github.com/b-quentin/b-indicator
+module github.com/b-quentin/indicator
 
 go 1.14
