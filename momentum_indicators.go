@@ -191,6 +191,10 @@ func StochasticOscillator(high, low, closing []float64) ([]float64, []float64) {
 	return k, d
 }
 
+func remove(slice []float64, s int) []float64 {
+    return append(slice[:s], slice[s+1:]...)
+}
+
 // Stochastic Oscillator RSI
 func StochasticOscillatorRSI(periodStock, kPeriod, dPeriod int, rsi []float64) ([]float64, []float64) {
     highestRSI := Max(periodStock, rsi)
@@ -201,6 +205,7 @@ func StochasticOscillatorRSI(periodStock, kPeriod, dPeriod int, rsi []float64) (
     fmt.Println("lowestRSI")
     fmt.Println(lowestRSI)
     calcul := multiplyBy(divide(subtract(rsi, lowestRSI), subtract(highestRSI, lowestRSI)), float64(100))
+    calcul = remove(calcul, 0)
     fmt.Println("calcul")
     fmt.Println(calcul)
 	k := Sma(kPeriod, calcul)
