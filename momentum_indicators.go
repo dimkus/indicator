@@ -204,7 +204,11 @@ func StochasticOscillatorRSI(periodStock, kPeriod, dPeriod int, rsi []float64) (
     fmt.Println("calcul")
     fmt.Println(calcul)
 	k := Sma(kPeriod, calcul)
+    fmt.Println("k")
+    fmt.Println(k)
     d := Sma(dPeriod, k)
+    fmt.Println("d")
+    fmt.Println(d)
 
     return k, d
 }
