@@ -9,7 +9,7 @@ import (
 	"math"
 	"testing"
 
-	"github.com/cinar/indicator"
+	"github.com/dimkus/indicator"
 )
 
 func TestNormalizeActions(t *testing.T) {

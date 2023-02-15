@@ -92,6 +92,19 @@ func BollingerBands(closing []float64) ([]float64, []float64, []float64) {
 	return middleBand, upperBand, lowerBand
 }
 
+// Bollinger Bands Period.
+func BollingerBandsPeriod(closing []float64, period int) ([]float64, []float64, []float64) {
+	middleBand := Sma(period, closing)
+
+	std := StdFromSma(period, closing, middleBand)
+	std2 := multiplyBy(std, 2)
+
+	upperBand := add(middleBand, std2)
+	lowerBand := subtract(middleBand, std2)
+
+	return middleBand, upperBand, lowerBand
+}
+
 // Chandelier Exit. It sets a trailing stop-loss based on the Average True Value (ATR).
 //
 // Chandelier Exit Long = 22-Period SMA High - ATR(22) * 3
