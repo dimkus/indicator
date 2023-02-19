@@ -81,29 +81,28 @@ func BollingerBandWidth(middleBand, upperBand, lowerBand []float64) ([]float64, 
 //
 // Returns middle band, upper band, lower band.
 func BollingerBands(closing []float64) ([]float64, []float64, []float64) {
-	middleBand := Sma(20, closing)
-
-	std := StdFromSma(20, closing, middleBand)
-	std2 := multiplyBy(std, 2)
-
-	upperBand := add(middleBand, std2)
-	lowerBand := subtract(middleBand, std2)
-
-	return middleBand, upperBand, lowerBand
+	return BollingerBandsPeriodMultiplier(closing, 20, 2)
 }
 
 // Bollinger Bands Period.
 func BollingerBandsPeriod(closing []float64, period int) ([]float64, []float64, []float64) {
+	return BollingerBandsPeriodMultiplier(closing, period, 2)
+}
+
+
+// Bollinger Bands Period Multiplier.
+func BollingerBandsPeriodMultiplier(closing []float64, period int, multiplier float64) ([]float64, []float64, []float64) {
 	middleBand := Sma(period, closing)
 
 	std := StdFromSma(period, closing, middleBand)
-	std2 := multiplyBy(std, 2)
+	std2 := multiplyBy(std, multiplier)
 
 	upperBand := add(middleBand, std2)
 	lowerBand := subtract(middleBand, std2)
 
 	return middleBand, upperBand, lowerBand
 }
+
 
 // Chandelier Exit. It sets a trailing stop-loss based on the Average True Value (ATR).
 //
